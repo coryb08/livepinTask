@@ -5,7 +5,7 @@ const authToken = "f66d03be6010c68a09ef3251829dc39d"
 const client = require("twilio")(accountSid, authToken)
 const sgMail = require("@sendgrid/mail")
 const apik =
-  "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"
+  "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"
 
 module.exports = {
   sendLink: function(id, countrycode, phone, email, content) {
