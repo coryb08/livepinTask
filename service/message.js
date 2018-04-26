@@ -1,11 +1,10 @@
 // Twilio Credentials
-const accountSid = "AC515897c83c6aab630c9938f8fa24cac5"
-const authToken = "f66d03be6010c68a09ef3251829dc39d"
+const accountSid = "PASTE ACCOUNTSID HERE AS STRING"
+const authToken = "PASTE TWILIO AUTH TOKEN HERE AS STRING"
 // require the Twilio module and create a REST client
 const client = require("twilio")(accountSid, authToken)
 const sgMail = require("@sendgrid/mail")
-const apik =
-  "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"
+const apik = "PASTE SENDGRID API KEY HERE AS STRING"
 
 module.exports = {
   sendLink: function(id, countrycode, phone, email, content) {
