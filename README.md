@@ -1,5 +1,6 @@
 # livepinTask
 
+This app requires postgreSQL. Download and instructions can be found here: http://postgresapp.com/
 
 ## Copy and paste these commands into your command line
 npm install
@@ -12,9 +13,9 @@ knex migrate:latest
 
 npm start
 
--navigate to localhost:3000/messages/new
+-make sure npm pg is version 6.0.0 (npm pg -v)
 
--make sure npm pg is version 6.0.0
+-navigate to localhost:3000/messages/new
 
 -API keys for sendGrid and Twilio will have to be sent from me.
 
