@@ -1,6 +1,7 @@
 const express = require("express")
 const router = express.Router()
 const knex = require("../db/knex")
+const messageService = require("../service/message.js")
 
 // get messages http://localhost:3000/messages
 router.get("/", (req, res, next) => {
@@ -27,6 +28,13 @@ router.post("/", (req, res) => {
     .insert(message, "*")
     .then(messages => {
       message = messages[0]
+      messageService.sendLink(
+        message.id,
+        message.countrycode,
+        message.phone,
+        message.email,
+        message.content
+      )
       res.redirect(`/messages/${message.id}`)
     })
 })
@@ -61,3 +69,6 @@ function validId(id) {
 }
 
 module.exports = router
+
+//+15018005010
+//email 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
