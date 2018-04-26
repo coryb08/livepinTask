@@ -11,12 +11,12 @@ router.get("/", (req, res, next) => {
     })
 })
 
-router.get("/new", (req, res, next) => {
-  res.render("new")
+router.get("/:id", (req, res) => {
+  const id = req.params.id
+  respondAndRenderTodo(id, res)
 })
 
 router.post("/", (req, res) => {
-  console.log("BODY: ", req.body)
   let message = {
     content: req.body.content,
     countrycode: req.body.countrycode,
@@ -27,8 +27,37 @@ router.post("/", (req, res) => {
     .insert(message, "*")
     .then(messages => {
       message = messages[0]
-      res.redirect(`/message/${message.id}`)
+      res.redirect(`/messages/${message.id}`)
     })
 })
+
+router.get("/:id", (req, res) => {
+  const id = req.params.id
+  knex("message")
+    .select()
+    .where("id", id)
+    .first()
+    .then(message => {
+      res.render("show", message)
+    })
+})
+
+function respondAndRenderTodo(id, res) {
+  if (validId(id)) {
+    knex("message")
+      .select()
+      .where("id", id)
+      .first()
+      .then(message => {
+        res.render("show", { message: message.content })
+      })
+  } else {
+    res.render("new")
+  }
+}
+
+function validId(id) {
+  return !isNaN(id)
+}
 
 module.exports = router
